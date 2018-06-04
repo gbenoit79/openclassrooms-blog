@@ -1,15 +1,15 @@
 <?php
 // Connect to database
-require_once('includes/dbConnect.php');
+require('includes/dbConnect.php');
 
-// Instantiate article service
-require_once('models/ArticleService.php');
-$articleService = new ArticleService($databaseHandler);
+// Instantiate post service
+require('models/PostService.php');
+$postService = new PostService($databaseHandler);
 
-// Get last 5 articles
+// Get last 5 posts
 $viewData = [];
-$viewData['articlesList'] = $articleService->getArticlesList(5);
+$viewData['postsList'] = $postService->getPostsList(5);
 
 // Display view
 $viewData['displayCommentsLink'] = true;
-require_once('views/indexView.php');
+require('views/indexView.php');

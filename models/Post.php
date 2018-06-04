@@ -1,8 +1,8 @@
 <?php
 /**
- * Article model
+ * Post model
  */
-class Article
+class Post
 {
     private $id;
     private $title;

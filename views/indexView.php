@@ -6,9 +6,8 @@ require("views/_headerView.php");
 <p>Derniers billets du blog :</p>
 
 <?php
-foreach ($viewData['articlesList'] as $viewData['article'])
-{
-    require("views/_articleShowView.php");
+foreach ($viewData['postsList'] as $viewData['post']) {
+    require("views/_postShowView.php");
 }
 ?>
 

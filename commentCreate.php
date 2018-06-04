@@ -1,18 +1,18 @@
 <?php
 // Connect to database
-require_once("includes/dbConnect.php");
+require("includes/dbConnect.php");
 
 // Instantiate comment service
-require_once('models/CommentService.php');
+require('models/CommentService.php');
 $commentService = new CommentService($databaseHandler);
 
 // Create comment
-$articleId = isset($_POST['articleId']) ? (int) $_POST['articleId'] : 0;
+$postId = isset($_POST['postId']) ? (int) $_POST['postId'] : 0;
 $comment = new Comment();
-$comment->setArticleId($articleId);
+$comment->setPostId($postId);
 $comment->setAuthor($_POST['author']);
 $comment->setContent($_POST['content']);
 $commentService->createComment($comment);
 
 // Redirect to comments list page
-header('Location: commentList.php?articleId='.$articleId);
+header('Location: commentList.php?postId='.$postId);

@@ -1,22 +1,22 @@
 <?php
 // Connect to database
-require_once('includes/dbConnect.php');
+require('includes/dbConnect.php');
 
-// Instantiate article service
-require_once('models/ArticleService.php');
-$articleService = new ArticleService($databaseHandler);
+// Instantiate post service
+require('models/PostService.php');
+$postService = new PostService($databaseHandler);
 
 // Instantiate comment service
-require_once('models/CommentService.php');
+require('models/CommentService.php');
 $commentService = new CommentService($databaseHandler);
 
-// Get article
+// Get post
 $viewData = [];
-$articleId = isset($_GET['articleId']) ? (int) $_GET['articleId'] : 0;
-$viewData['article'] = $articleService->getArticle($articleId);
+$postId = isset($_GET['postId']) ? (int) $_GET['postId'] : 0;
+$viewData['post'] = $postService->getPost($postId);
 
 // Get comments
-$viewData['commentsList'] = $commentService->getCommentsList($articleId);
+$viewData['commentsList'] = $commentService->getCommentsList($postId);
 
 // Display view
-require_once('views/commentListView.php');
+require('views/commentListView.php');

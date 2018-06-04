@@ -5,7 +5,7 @@
 class Comment
 {
     private $id;
-    private $articleId;
+    private $postId;
     private $author;
     private $content;
     private $creationDate;
@@ -19,13 +19,13 @@ class Comment
         $this->id = $id;
     }
 
-    public function getArticleId()
+    public function getPostId()
     {
-        return $this->articleId;
+        return $this->postId;
     }
-    public function setArticleId($articleId)
+    public function setPostId($postId)
     {
-        $this->articleId = $articleId;
+        $this->postId = $postId;
     }
 
     public function getAuthor()
