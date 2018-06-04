@@ -1,11 +1,18 @@
 <?php
 // Connect to database
-include("includes/dbConnect.php");
+require_once("includes/dbConnect.php");
+
+// Instantiate comment service
+require_once('models/CommentService.php');
+$commentService = new CommentService($databaseHandler);
 
 // Create comment
 $articleId = isset($_POST['articleId']) ? (int) $_POST['articleId'] : 0;
-$request = $databaseHandler->prepare('INSERT INTO comments (article_id, author, content, creation_date) VALUES(?, ?, ?, NOW())');
-$request->execute(array($articleId, $_POST['author'], $_POST['content']));
+$comment = new Comment();
+$comment->setArticleId($articleId);
+$comment->setAuthor($_POST['author']);
+$comment->setContent($_POST['content']);
+$commentService->createComment($comment);
 
 // Redirect to comments list page
 header('Location: commentList.php?articleId='.$articleId);

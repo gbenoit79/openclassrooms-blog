@@ -1,5 +1,5 @@
 <?php
-require('Article.php');
+require_once('Article.php');
 
 /**
  * Article service

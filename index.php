@@ -1,9 +1,9 @@
 <?php
 // Connect to database
-require('includes/dbConnect.php');
+require_once('includes/dbConnect.php');
 
 // Instantiate article service
-require('models/ArticleService.php');
+require_once('models/ArticleService.php');
 $articleService = new ArticleService($databaseHandler);
 
 // Get last 5 articles
@@ -12,4 +12,4 @@ $viewData['articlesList'] = $articleService->getArticlesList(5);
 
 // Display view
 $viewData['displayCommentsLink'] = true;
-require('views/indexView.php');
+require_once('views/indexView.php');

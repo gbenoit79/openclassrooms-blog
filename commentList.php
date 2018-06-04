@@ -1,13 +1,13 @@
 <?php
 // Connect to database
-require('includes/dbConnect.php');
+require_once('includes/dbConnect.php');
 
 // Instantiate article service
-require('models/ArticleService.php');
+require_once('models/ArticleService.php');
 $articleService = new ArticleService($databaseHandler);
 
 // Instantiate comment service
-require('models/CommentService.php');
+require_once('models/CommentService.php');
 $commentService = new CommentService($databaseHandler);
 
 // Get article
@@ -19,4 +19,4 @@ $viewData['article'] = $articleService->getArticle($articleId);
 $viewData['commentsList'] = $commentService->getCommentsList($articleId);
 
 // Display view
-require('views/commentListView.php');
+require_once('views/commentListView.php');

@@ -1,5 +1,5 @@
 <?php
-require('Comment.php');
+require_once('Comment.php');
 
 /**
  * Comment service
@@ -41,5 +41,12 @@ class CommentService
         }
 
         return $commentsList;
+    }
+
+    public function createComment(Comment $comment)
+    {
+        $request = $this->getDatabaseHandler()->prepare('INSERT INTO comments (article_id, author, content, creation_date) VALUES(?, ?, ?, NOW())');
+        
+        return $request->execute(array($comment->getArticleId(), $comment->getAuthor(), $comment->getContent()));
     }
 }
