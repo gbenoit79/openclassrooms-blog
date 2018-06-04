@@ -1,0 +1,45 @@
+<?php
+require('Comment.php');
+
+/**
+ * Comment service
+ */
+class CommentService
+{
+    private $databaseHandler;
+
+    public function __construct(\PDO $databaseHandler)
+    {
+        $this->setDatabaseHandler($databaseHandler);
+    }
+
+    public function getDatabaseHandler()
+    {
+        return $this->databaseHandler;
+    }
+    public function setDatabaseHandler(\PDO $databaseHandler)
+    {
+        $this->databaseHandler = $databaseHandler;
+    }
+
+    public function getCommentsList($articleId)
+    {
+        $request = $this->getDatabaseHandler()->prepare('SELECT id, article_id, author, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE article_id = ? ORDER BY creation_date');
+        $request->execute(array($articleId));
+        $resultsList = $request->fetchAll();
+        $request->closeCursor();
+
+        $commentsList = [];
+        foreach ($resultsList as $result) {
+            $comment = new Comment();
+            $comment->setId($result['id']);
+            $comment->setArticleId($result['article_id']);
+            $comment->setAuthor($result['author']);
+            $comment->setContent($result['content']);
+            $comment->setCreationDate($result['creation_date_fr']);
+            $commentsList[] = $comment;
+        }
+
+        return $commentsList;
+    }
+}

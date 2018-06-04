@@ -15,17 +15,17 @@ require("views/_articleShowView.php");
 foreach ($viewData['commentsList'] as $comment)
 {
 ?>
-    <p><strong><?php echo htmlspecialchars($comment['auteur']); ?></strong> le <?php echo $comment['date_commentaire_fr']; ?></p>
-    <p><?php echo nl2br(htmlspecialchars($comment['commentaire'])); ?></p>
+    <p><strong><?php echo htmlspecialchars($comment->getAuthor()); ?></strong> le <?php echo $comment->getCreationDate(); ?></p>
+    <p><?php echo nl2br(htmlspecialchars($comment->getContent())); ?></p>
 <?php
 }
 ?>
 
 <form action="commentCreate.php" method="post">
-    <input type="hidden" name="articleId" value="<?php echo $viewData['article']['id']; ?>">
+    <input type="hidden" name="articleId" value="<?php echo $viewData['article']->getId(); ?>">
     <p>
-        <label for="auteur">Pseudo</label> : <input type="text" name="auteur" id="auteur" /><br />
-        <label for="commentaire">Commentaire</label> :  <input type="text" name="commentaire" id="commentaire" /><br />
+        <label for="author">Pseudo</label> : <input type="text" name="author" id="author" /><br />
+        <label for="content">Commentaire</label> :  <input type="text" name="content" id="content" /><br />
 
         <input type="submit" value="Envoyer" />
     </p>

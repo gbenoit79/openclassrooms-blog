@@ -2,11 +2,13 @@
 // Connect to database
 require('includes/dbConnect.php');
 
+// Instantiate article service
+require('models/ArticleService.php');
+$articleService = new ArticleService($databaseHandler);
+
 // Get last 5 articles
 $viewData = [];
-$request = $db->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets ORDER BY date_creation DESC LIMIT 0, 5');
-$viewData['articlesList'] = $request->fetchAll();
-$request->closeCursor();
+$viewData['articlesList'] = $articleService->getArticlesList(5);
 
 // Display view
 $viewData['displayCommentsLink'] = true;
