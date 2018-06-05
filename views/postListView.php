@@ -4,10 +4,9 @@
 
 <?php
 foreach ($viewData['postsList'] as $viewData['post']) {
-    require("views/_postShowView.php");
+    require("views/_postView.php");
 }
 ?>
-
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

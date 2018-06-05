@@ -3,21 +3,18 @@
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
 <?php
-require("views/_postShowView.php");
+require("views/_postView.php");
 ?>
 
 <h2>Commentaires</h2>
 
 <?php
 foreach ($viewData['commentsList'] as $comment) {
-?>
-    <p><strong><?php echo htmlspecialchars($comment->getAuthor()); ?></strong> le <?php echo $comment->getCreationDate(); ?></p>
-    <p><?php echo nl2br(htmlspecialchars($comment->getContent())); ?></p>
-<?php
+    require("views/_commentView.php");
 }
 ?>
 
-<form action="commentCreate.php" method="post">
+<form action="index.php?controller=comment&action=create" method="post">
     <input type="hidden" name="postId" value="<?php echo $viewData['post']->getId(); ?>">
     <p>
         <label for="author">Pseudo</label> : <input type="text" name="author" id="author" /><br />

@@ -1,5 +1,5 @@
 <?php
-require('Post.php');
+require_once(__DIR__.'/../models/Post.php');
 
 /**
  * Post service

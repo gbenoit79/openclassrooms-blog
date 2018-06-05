@@ -1,18 +1,38 @@
 <?php
-// Connect to database
-require('includes/dbConnect.php');
+/**
+ * Router
+ */
 
-// Instantiate post service
-require('models/PostService.php');
-$postService = new PostService($databaseHandler);
+// Config
+require_once('config.php');
 
-// Handle view data
-$viewData = [];
-$viewData['title'] = 'Blog de Jean Forteroche';
-$viewData['displayCommentsLink'] = true;
+// Handle controller
+$controllerParam = isset($_REQUEST['controller']) ? $_REQUEST['controller'] : $config['default']['controller'];
+if (empty($controllerParam)) {
+    throw new \Exception('Error: empty controller');
+}
+$controllerName = ucwords($controllerParam).'Controller';
+$controllerPath = 'controllers/'.$controllerName.'.php';
+if (!file_exists($controllerPath)) {
+    throw new \Exception('Error: invalid controller');
+}
+require_once($controllerPath);
+$controller = new $controllerName();
 
-// Get last 5 posts
-$viewData['postsList'] = $postService->getPostsList(5);
+// Handle action
+$actionParam = isset($_REQUEST['action']) ? $_REQUEST['action'] : $config['default']['action'];
+if (empty($actionParam)) {
+    throw new \Exception('Error: empty action');
+}
+$actionName = $actionParam.'Action';
+if (!method_exists($controller, $actionName)) {
+    throw new \Exception('Error: invalid action');
+}
 
-// Display view
-require('views/indexView.php');
+// Dependency Injection Container
+require_once('services/Container.php');
+$container = new Container($config);
+$controller->setContainer($container);
+
+// Execute action
+$controller->$actionName();

@@ -1,5 +1,5 @@
 <?php
-require('Comment.php');
+require_once(__DIR__.'/../models/Comment.php');
 
 /**
  * Comment service
