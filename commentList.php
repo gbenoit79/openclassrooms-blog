@@ -2,7 +2,7 @@
 // Get post id
 $postId = isset($_GET['postId']) ? (int) $_GET['postId'] : 0;
 if ($postId <= 0) {
-    throw new \Exception('Erreur : aucun identifiant de billet envoyé');
+    throw new \Exception('Error: invalid post id');
 }
 
 // Connect to database
@@ -16,8 +16,11 @@ $postService = new PostService($databaseHandler);
 require('models/CommentService.php');
 $commentService = new CommentService($databaseHandler);
 
-// Get post
+// Handle view data
 $viewData = [];
+$viewData['title'] = 'Blog de Jean Forteroche';
+
+// Get post
 $viewData['post'] = $postService->getPost($postId);
 
 // Get comments

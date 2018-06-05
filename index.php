@@ -6,10 +6,13 @@ require('includes/dbConnect.php');
 require('models/PostService.php');
 $postService = new PostService($databaseHandler);
 
-// Get last 5 posts
+// Handle view data
 $viewData = [];
+$viewData['title'] = 'Blog de Jean Forteroche';
+$viewData['displayCommentsLink'] = true;
+
+// Get last 5 posts
 $viewData['postsList'] = $postService->getPostsList(5);
 
 // Display view
-$viewData['displayCommentsLink'] = true;
 require('views/indexView.php');

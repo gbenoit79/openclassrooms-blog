@@ -1,6 +1,6 @@
 <?php
 // Connect to database
-require("includes/dbConnect.php");
+require('includes/dbConnect.php');
 
 // Instantiate comment service
 require('models/CommentService.php');

@@ -1,7 +1,4 @@
-<?php
-require("views/_headerView.php");
-?>
-
+<?php ob_start(); ?>
 <h1>Mon super blog !</h1>
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
@@ -29,7 +26,6 @@ foreach ($viewData['commentsList'] as $comment) {
         <input type="submit" value="Envoyer" />
     </p>
 </form>
+<?php $content = ob_get_clean(); ?>
 
-<?php
-require("views/_footerView.php");
-?>
+<?php require('template.php'); ?>
