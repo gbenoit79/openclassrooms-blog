@@ -11,7 +11,7 @@
         
         <?php if (isset($viewData['displayCommentsLink']) && $viewData['displayCommentsLink'] === true): ?>
             <br />
-            <em><a href="index.php?controller=post&action=show&postId=<?php echo $viewData['post']->getId(); ?>">Commentaires</a></em>
+            <em><a href="index.php?controller=post&amp;action=show&amp;postId=<?php echo $viewData['post']->getId(); ?>">Commentaires</a></em>
         <?php endif; ?>
     </p>
 </div>

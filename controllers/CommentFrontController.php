@@ -3,9 +3,9 @@ require_once('BaseController.php');
 require_once(__DIR__.'/../models/Comment.php');
 
 /**
- * Comment controller
+ * Comment front controller
  */
-class CommentController extends BaseController
+class CommentFrontController extends BaseController
 {
     public function createAction()
     {

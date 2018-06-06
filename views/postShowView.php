@@ -14,7 +14,7 @@ foreach ($viewData['commentsList'] as $comment) {
 }
 ?>
 
-<form action="index.php?controller=comment&action=create" method="post">
+<form action="index.php?controller=comment&amp;action=create" method="post">
     <input type="hidden" name="postId" value="<?php echo $viewData['post']->getId(); ?>">
     <p>
         <label for="author">Pseudo</label> : <input type="text" name="author" id="author" /><br />

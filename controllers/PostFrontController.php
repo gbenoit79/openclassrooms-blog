@@ -2,9 +2,9 @@
 require_once('BaseController.php');
 
 /**
- * Post controller
+ * Post front controller
  */
-class PostController extends BaseController
+class PostFrontController extends BaseController
 {
     public function listAction()
     {
