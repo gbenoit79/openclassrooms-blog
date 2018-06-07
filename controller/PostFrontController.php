@@ -38,6 +38,12 @@ class PostFrontController extends BaseController
         // Get comments
         $viewData['commentsList'] = $this->getContainer()->getCommentManager()->getCommentsList($postId);
 
+        // Handle error
+        if (!empty($_SESSION['errorMessage'])) {
+            $viewData['errorMessage'] = $_SESSION['errorMessage'];
+            $_SESSION['errorMessage'] = '';
+        }
+
         // Display view
         require('view/front/postShowView.php');
     }

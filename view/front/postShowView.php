@@ -14,11 +14,15 @@ foreach ($viewData['commentsList'] as $comment) {
 }
 ?>
 
+<?php if (!empty($viewData['errorMessage'])): ?>
+    <div class="error-message">Erreur : <?php echo $viewData['errorMessage']; ?></div>
+<?php endif; ?>
+
 <form action="index.php?controller=comment&amp;action=create" method="post">
     <input type="hidden" name="postId" value="<?php echo $viewData['post']->getId(); ?>">
     <p>
-        <label for="author">Pseudo</label> : <input type="text" name="author" id="author" /><br />
-        <label for="content">Commentaire</label> :  <input type="text" name="content" id="content" /><br />
+        <label for="author">Pseudo</label> : <input type="text" name="author" id="author" required /><br />
+        <label for="content">Commentaire</label> :  <input type="text" name="content" id="content" required /><br />
 
         <input type="submit" value="Envoyer" />
     </p>

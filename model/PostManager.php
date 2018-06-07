@@ -48,4 +48,11 @@ class PostManager extends Manager
 
         return $post;
     }
+
+    public function createPost(Post $post)
+    {
+        $request = $this->getDatabaseHandler()->prepare('INSERT INTO posts (title, content, creation_date) VALUES(?, ?, NOW())');
+        
+        return $request->execute(array($post->getTitle(), $post->getContent()));
+    }
 }
