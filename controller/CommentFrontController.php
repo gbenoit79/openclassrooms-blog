@@ -1,4 +1,6 @@
 <?php
+namespace OpenClassrooms\Blog\Controller;
+
 require_once('BaseController.php');
 require_once(__DIR__.'/../model/Comment.php');
 
@@ -11,7 +13,7 @@ class CommentFrontController extends BaseController
     {
         // Create comment
         $postId = isset($_POST['postId']) ? (int) $_POST['postId'] : 0;
-        $comment = new Comment();
+        $comment = new \OpenClassrooms\Blog\Model\Comment();
         $comment->setPostId($postId);
         $comment->setAuthor($_POST['author']);
         $comment->setContent($_POST['content']);

@@ -1,25 +1,17 @@
 <?php
-require_once(__DIR__.'/../model/Comment.php');
+namespace OpenClassrooms\Blog\Model;
+
+require_once('Manager.php');
+require_once('Comment.php');
 
 /**
  * Comment manager
  */
-class CommentManager
+class CommentManager extends Manager
 {
-    private $databaseHandler;
-
     public function __construct(\PDO $databaseHandler)
     {
         $this->setDatabaseHandler($databaseHandler);
-    }
-
-    public function getDatabaseHandler()
-    {
-        return $this->databaseHandler;
-    }
-    public function setDatabaseHandler(\PDO $databaseHandler)
-    {
-        $this->databaseHandler = $databaseHandler;
     }
 
     public function getCommentsList($postId)

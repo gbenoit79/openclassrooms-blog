@@ -1,4 +1,6 @@
 <?php
+namespace OpenClassrooms\Blog\Controller;
+
 require_once(__DIR__.'/../model/Container.php');
 
 /**
@@ -12,7 +14,7 @@ abstract class BaseController
     {
         return $this->container;
     }
-    public function setContainer(Container $container)
+    public function setContainer(\OpenClassrooms\Blog\Model\Container $container)
     {
         $this->container = $container;
     }

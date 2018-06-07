@@ -1,4 +1,6 @@
 <?php
+namespace OpenClassrooms\Blog\Controller;
+
 require_once('BaseController.php');
 
 /**

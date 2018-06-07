@@ -1,25 +1,17 @@
 <?php
-require_once(__DIR__.'/../model/Post.php');
+namespace OpenClassrooms\Blog\Model;
+
+require_once('Manager.php');
+require_once('Post.php');
 
 /**
  * Post manager
  */
-class PostManager
+class PostManager extends Manager
 {
-    private $databaseHandler;
-
     public function __construct(\PDO $databaseHandler)
     {
         $this->setDatabaseHandler($databaseHandler);
-    }
-
-    public function getDatabaseHandler()
-    {
-        return $this->databaseHandler;
-    }
-    public function setDatabaseHandler(\PDO $databaseHandler)
-    {
-        $this->databaseHandler = $databaseHandler;
     }
 
     public function getPostsList($total=5)

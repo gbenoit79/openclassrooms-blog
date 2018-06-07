@@ -1,4 +1,6 @@
 <?php
+namespace OpenClassrooms\Blog\Model;
+
 /**
  * Comment model
  */

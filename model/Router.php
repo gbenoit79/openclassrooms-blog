@@ -1,4 +1,6 @@
 <?php
+namespace OpenClassrooms\Blog\Model;
+
 /**
  * Router
  */
@@ -36,6 +38,7 @@ class Router
             throw new \Exception('Invalid controller');
         }
         require_once($controllerPath);
+        $controllerName = '\OpenClassrooms\Blog\Controller\\'.$controllerName;
         $controller = new $controllerName();
 
         // Handle action

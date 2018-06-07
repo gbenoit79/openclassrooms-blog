@@ -8,7 +8,7 @@ require_once('config.php');
 
 // Execute action
 require_once('model/Router.php');
-$router = new Router($config);
+$router = new \OpenClassrooms\Blog\Model\Router($config);
 try {
     $router->executeAction(
         isset($_REQUEST['controller']) ? $_REQUEST['controller'] : 'post',

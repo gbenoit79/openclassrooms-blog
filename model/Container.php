@@ -1,4 +1,6 @@
 <?php
+namespace OpenClassrooms\Blog\Model;
+
 /**
  * Container
  */
@@ -39,7 +41,7 @@ class Container
         static $instance;
         if (!isset($instance)) {
             include_once('PostManager.php');
-            $instance = new PostManager($this->getDatabaseHandler());
+            $instance = new \OpenClassrooms\Blog\Model\PostManager($this->getDatabaseHandler());
         }
 
         return $instance;
@@ -50,7 +52,7 @@ class Container
         static $instance;
         if (!isset($instance)) {
             include_once('CommentManager.php');
-            $instance = new CommentManager($this->getDatabaseHandler());
+            $instance = new \OpenClassrooms\Blog\Model\CommentManager($this->getDatabaseHandler());
         }
 
         return $instance;
