@@ -15,7 +15,7 @@ class CommentFrontController extends BaseController
         $comment->setPostId($postId);
         $comment->setAuthor($_POST['author']);
         $comment->setContent($_POST['content']);
-        $this->getContainer()->getCommentService()->createComment($comment);
+        $this->getContainer()->getCommentManager()->createComment($comment);
 
         // Redirect
         header('Location: index.php?controller=post&action=show&postId='.$postId);

@@ -2,9 +2,9 @@
 require_once(__DIR__.'/../model/Comment.php');
 
 /**
- * Comment service
+ * Comment manager
  */
-class CommentService
+class CommentManager
 {
     private $databaseHandler;
 

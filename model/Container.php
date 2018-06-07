@@ -34,23 +34,23 @@ class Container
         return $instance;
     }
 
-    public function getPostService()
+    public function getPostManager()
     {
         static $instance;
         if (!isset($instance)) {
-            include_once('PostService.php');
-            $instance = new PostService($this->getDatabaseHandler());
+            include_once('PostManager.php');
+            $instance = new PostManager($this->getDatabaseHandler());
         }
 
         return $instance;
     }
 
-    public function getCommentService()
+    public function getCommentManager()
     {
         static $instance;
         if (!isset($instance)) {
-            include_once('CommentService.php');
-            $instance = new CommentService($this->getDatabaseHandler());
+            include_once('CommentManager.php');
+            $instance = new CommentManager($this->getDatabaseHandler());
         }
 
         return $instance;

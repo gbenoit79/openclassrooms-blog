@@ -2,9 +2,9 @@
 require_once(__DIR__.'/../model/Post.php');
 
 /**
- * Post service
+ * Post manager
  */
-class PostService
+class PostManager
 {
     private $databaseHandler;
 
