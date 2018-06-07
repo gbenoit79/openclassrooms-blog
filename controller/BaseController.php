@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__.'/../services/Container.php');
+require_once(__DIR__.'/../model/Container.php');
 
 /**
  * Base controller

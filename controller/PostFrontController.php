@@ -16,7 +16,7 @@ class PostFrontController extends BaseController
         $viewData['postsList'] = $this->getContainer()->getPostService()->getPostsList(5);
 
         // Display view
-        require_once('views/postListView.php');
+        require_once('view/front/postListView.php');
     }
 
     public function showAction()
@@ -37,6 +37,6 @@ class PostFrontController extends BaseController
         $viewData['commentsList'] = $this->getContainer()->getCommentService()->getCommentsList($postId);
 
         // Display view
-        require('views/postShowView.php');
+        require('view/front/postShowView.php');
     }
 }

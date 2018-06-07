@@ -3,14 +3,14 @@
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
 <?php
-require("views/_postView.php");
+require('_postView.php');
 ?>
 
 <h2>Commentaires</h2>
 
 <?php
 foreach ($viewData['commentsList'] as $comment) {
-    require("views/_commentView.php");
+    require('_commentView.php');
 }
 ?>
 

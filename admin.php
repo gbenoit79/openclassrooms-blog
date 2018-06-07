@@ -7,7 +7,7 @@
 require_once('config.php');
 
 // Execute action
-require_once('services/Router.php');
+require_once('model/Router.php');
 $router = new Router($config);
 $router->executeAction(
     isset($_REQUEST['controller']) ? $_REQUEST['controller'] : 'post',

@@ -4,7 +4,7 @@
 
 <?php
 foreach ($viewData['postsList'] as $viewData['post']) {
-    require("views/_postView.php");
+    require('_postView.php');
 }
 ?>
 <?php $content = ob_get_clean(); ?>
