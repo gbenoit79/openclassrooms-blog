@@ -42,4 +42,16 @@ class PostBackController extends PostFrontController
         // Display view
         require_once('view/back/postCreateView.php');
     }
+
+    public function listAction()
+    {
+        // Init view data
+        $viewData = $this->initViewData();
+
+        // Get posts
+        $viewData['postsList'] = $this->getContainer()->getPostManager()->getPostsList(10);
+
+        // Display view
+        require_once('view/back/postListView.php');
+    }
 }
