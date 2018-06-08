@@ -6,7 +6,7 @@
     
     <p>
         <?php
-            echo nl2br(htmlspecialchars($viewData['post']->getContent()));
+            echo nl2br($viewData['post']->getContent());
         ?>
         
         <?php if (isset($viewData['displayCommentsLink']) && $viewData['displayCommentsLink'] === true): ?>
