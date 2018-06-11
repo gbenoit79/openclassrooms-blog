@@ -14,9 +14,7 @@ foreach ($viewData['commentsList'] as $comment) {
 }
 ?>
 
-<?php if (!empty($viewData['errorMessage'])): ?>
-    <div class="error-message">Erreur : <?php echo $viewData['errorMessage']; ?></div>
-<?php endif; ?>
+<?php require(__DIR__.'/../_alert.php'); ?>
 
 <form action="index.php?controller=comment&amp;action=create" method="post">
     <input type="hidden" name="postId" value="<?php echo $viewData['post']->getId(); ?>">

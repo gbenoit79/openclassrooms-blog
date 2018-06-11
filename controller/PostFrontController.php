@@ -38,10 +38,10 @@ class PostFrontController extends BaseController
         // Get comments
         $viewData['commentsList'] = $this->getContainer()->getCommentManager()->getCommentsList($postId);
 
-        // Handle error
-        if (!empty($_SESSION['errorMessage'])) {
-            $viewData['errorMessage'] = $_SESSION['errorMessage'];
-            $_SESSION['errorMessage'] = '';
+        // Handle alert
+        if (!empty($_SESSION['alertDanger'])) {
+            $viewData['alertDanger'] = $_SESSION['alertDanger'];
+            $_SESSION['alertDanger'] = '';
         }
 
         // Display view

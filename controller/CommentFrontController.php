@@ -16,9 +16,9 @@ class CommentFrontController extends BaseController
         
         // Check form params
         if (empty($_POST['author'])) {
-            $_SESSION['errorMessage'] = 'Pseudo vide';
+            $_SESSION['alertDanger'] = 'Pseudo vide';
         } else if (empty($_POST['content'])) {
-            $_SESSION['errorMessage'] = 'Commentaire vide';
+            $_SESSION['alertDanger'] = 'Commentaire vide';
         // Form is OK
         } else {
             // Create comment
@@ -30,7 +30,7 @@ class CommentFrontController extends BaseController
 
             // Is comment created successfully?
             if (!$result) {
-                $_SESSION['errorMessage'] = 'Problème lors de la création du billet';
+                $_SESSION['alertDanger'] = 'Problème lors de la création du billet';
             }
         }
         

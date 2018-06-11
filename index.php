@@ -16,6 +16,6 @@ try {
         'front'
     );
 } catch(Exception $e) {
-    $viewData['errorMessage'] = $e->getMessage();
+    $viewData['error'] = $e->getMessage();
     require('view/errorView.php');
 }

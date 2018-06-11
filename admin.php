@@ -12,10 +12,10 @@ $router = new \OpenClassrooms\Blog\Model\Router($config);
 try {
     $router->executeAction(
         isset($_REQUEST['controller']) ? $_REQUEST['controller'] : 'post',
-        isset($_REQUEST['action']) ? $_REQUEST['action'] : 'create',
+        isset($_REQUEST['action']) ? $_REQUEST['action'] : 'list',
         'back'
     );
 } catch(Exception $e) {
-    $viewData['errorMessage'] = $e->getMessage();
+    $viewData['error'] = $e->getMessage();
     require('view/errorView.php');
 }
