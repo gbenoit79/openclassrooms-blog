@@ -69,4 +69,15 @@ class PostManager extends Manager
         
         return $request->execute(array($post->getTitle(), $post->getContent(), $post->getId()));
     }
+
+    public function deletePost($id)
+    {
+        if ($id <= 0) {
+            throw new \Exception('Invalid post id');
+        }
+        
+        $request = $this->getDatabaseHandler()->prepare('DELETE FROM posts WHERE id = ?');
+        
+        return $request->execute(array($id));
+    }
 }

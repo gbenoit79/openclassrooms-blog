@@ -97,4 +97,22 @@ class PostBackController extends PostFrontController
         // Display view
         require_once('view/back/post'.ucwords($action).'View.php');
     }
+
+    public function deleteAction()
+    {
+        // Get post id
+        $postId = isset($_REQUEST['postId']) ? (int) $_REQUEST['postId'] : 0;
+        if ($postId <= 0) {
+            throw new \Exception('Invalid post id');
+        }
+
+        // Delete post
+        $result = $this->getContainer()->getPostManager()->deletePost($postId);
+        if (!$result) {
+            throw new \Exception('Cannot delete post');
+        }
+
+        // Redirect
+        header('Location: admin.php?controller=post&action=list');
+    }
 }
