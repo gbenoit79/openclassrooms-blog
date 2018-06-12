@@ -76,8 +76,18 @@ class PostManager extends Manager
             throw new \Exception('Invalid post id');
         }
         
-        $request = $this->getDatabaseHandler()->prepare('DELETE FROM posts WHERE id = ?');
+        // Use a transaction to delete post and comments
+        $result = true;
+        try {
+            $this->getDatabaseHandler()->beginTransaction();
+            $this->getDatabaseHandler()->exec(sprintf('DELETE FROM posts WHERE id = %d', (int) $id));
+            $this->getDatabaseHandler()->exec(sprintf('DELETE FROM comments WHERE post_id = %d', (int) $id));
+            $this->getDatabaseHandler()->commit();
+        } catch (Exception $e) {
+            $this->getDatabaseHandler()->rollBack();
+            throw $e;
+        }
         
-        return $request->execute(array($id));
+        return $result;
     }
 }
