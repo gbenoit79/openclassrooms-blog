@@ -38,10 +38,13 @@ class PostFrontController extends BaseController
         // Get comments
         $viewData['commentsList'] = $this->getContainer()->getCommentManager()->getCommentsList($postId);
 
-        // Handle alert
-        if (!empty($_SESSION['alertDanger'])) {
-            $viewData['alertDanger'] = $_SESSION['alertDanger'];
-            $_SESSION['alertDanger'] = '';
+        // Handle alerts
+        foreach (['Success', 'Danger'] as $alertType) {
+            $alertName = 'alert'.$alertType;
+            if (!empty($_SESSION[$alertName])) {
+                $viewData[$alertName] = $_SESSION[$alertName];
+                $_SESSION[$alertName] = '';
+            }
         }
 
         // Display view

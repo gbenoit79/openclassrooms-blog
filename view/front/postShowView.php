@@ -2,6 +2,8 @@
 <h1>Mon super blog !</h1>
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
+<?php require(__DIR__.'/../_alert.php'); ?>
+
 <?php
 require('_postView.php');
 ?>
@@ -13,8 +15,6 @@ foreach ($viewData['commentsList'] as $comment) {
     require('_commentView.php');
 }
 ?>
-
-<?php require(__DIR__.'/../_alert.php'); ?>
 
 <form action="index.php?controller=comment&amp;action=create" method="post">
     <input type="hidden" name="postId" value="<?php echo $viewData['post']->getId(); ?>">

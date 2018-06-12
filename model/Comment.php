@@ -10,6 +10,7 @@ class Comment
     private $postId;
     private $author;
     private $content;
+    private $reportCounter;
     private $creationDate;
 
     public function getId()
@@ -46,6 +47,15 @@ class Comment
     public function setContent($content)
     {
         $this->content = $content;
+    }
+
+    public function getReportCounter()
+    {
+        return $this->reportCounter;
+    }
+    public function setReportCounter($reportCounter)
+    {
+        $this->reportCounter = $reportCounter;
     }
 
     public function getCreationDate()
