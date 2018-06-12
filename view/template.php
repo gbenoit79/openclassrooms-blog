@@ -15,5 +15,8 @@
         
     <body>
         <?php echo $content; ?>
+
+        <script src="public/js/jquery/jquery-3.3.1.slim.min.js"></script>
+        <?php if (isset($javascript)) { echo $javascript; } ?>
     </body>
 </html>
