@@ -1,6 +1,8 @@
 <?php ob_start(); ?>
 <h1>Admin</h1>
 
+<?php require(__DIR__.'/../_alert.php'); ?>
+
 <?php require('_menu.php'); ?>
 
 <h2>G&eacute;rer les billets</h2>

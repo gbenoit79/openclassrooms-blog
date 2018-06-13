@@ -17,6 +17,15 @@ class PostBackController extends PostFrontController
         // Get posts
         $viewData['postsList'] = $this->getContainer()->getPostManager()->getPostsList(10);
 
+        // Handle alerts
+        foreach (['Success', 'Danger'] as $alertType) {
+            $alertName = 'alert'.$alertType;
+            if (!empty($_SESSION[$alertName])) {
+                $viewData[$alertName] = $_SESSION[$alertName];
+                $_SESSION[$alertName] = '';
+            }
+        }
+
         // Display view
         require_once('view/back/postListView.php');
     }
@@ -86,6 +95,7 @@ class PostBackController extends PostFrontController
                 
                 // Is post saved successfully?
                 if ($result) {
+                    $_SESSION['alertSuccess'] = sprintf('Billet %s avec succès', ($action === 'create') ? 'créé' : 'modifié');
                     // Redirect
                     header('Location: admin.php?controller=post&action=list');
                 } else {
@@ -108,8 +118,11 @@ class PostBackController extends PostFrontController
 
         // Delete post
         $result = $this->getContainer()->getPostManager()->deletePost($postId);
+        // Is post deleted successfully?
         if (!$result) {
-            throw new \Exception('Cannot delete post');
+            $_SESSION['alertDanger'] = 'Problème lors de la suppression du billet';
+        } else {
+            $_SESSION['alertSuccess'] = 'Billet supprimé avec succès';
         }
 
         // Redirect
