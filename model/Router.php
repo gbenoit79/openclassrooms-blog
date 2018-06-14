@@ -52,6 +52,20 @@ class Router
         $container = new Container($this->getConfig());
         $controller->setContainer($container);
 
+        // Security: to access to backend controllers, you must be an admin
+        if ($envParam === 'back') {
+            $connectedUser = $container->getUserManager()->getConnectedUser();
+            // User not connected
+            if (!isset($connectedUser['id'])) {
+                // Redirect to login
+                header('Location: index.php?controller=user&action=login');
+            // User group id 1 is admin
+            } elseif (isset($connectedUser['userGroupId']) && $connectedUser['userGroupId'] != 1) {
+                // Access denied
+                throw new \Exception('Access denied');
+            }
+        }
+
         // Execute action
         $controller->$actionName();
     }

@@ -57,4 +57,15 @@ class Container
 
         return $instance;
     }
+
+    public function getUserManager()
+    {
+        static $instance;
+        if (!isset($instance)) {
+            include_once('UserManager.php');
+            $instance = new \OpenClassrooms\Blog\Model\UserManager($this->getDatabaseHandler());
+        }
+
+        return $instance;
+    }
 }
