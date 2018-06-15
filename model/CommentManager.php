@@ -14,10 +14,13 @@ class CommentManager extends Manager
         $this->setDatabaseHandler($databaseHandler);
     }
 
-    public function getCommentsList($postId)
+    public function getCommentsList($postId, $offset=0, $limit=10)
     {
-        $request = $this->getDatabaseHandler()->prepare('SELECT id, post_id, author, content, report_counter, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE post_id = ? ORDER BY creation_date');
-        $request->execute(array($postId));
+        $request = $this->getDatabaseHandler()->prepare('SELECT id, post_id, author, content, report_counter, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE post_id = :postId ORDER BY creation_date LIMIT :offset, :limit');
+        $request->bindValue(':postId', $postId, \PDO::PARAM_INT);
+        $request->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        $request->bindValue(':limit', $limit, \PDO::PARAM_INT);
+        $request->execute();
         $resultsList = $request->fetchAll();
         $request->closeCursor();
 
@@ -99,5 +102,17 @@ class CommentManager extends Manager
         $request->bindValue(':commentId', $commentId, \PDO::PARAM_INT);
 
         return $request->execute();
+    }
+
+    /**
+     * Get total comments
+     * 
+     * @return int
+     */
+    public function getTotalComments()
+    {
+        $result = $this->getDatabaseHandler()->query('SELECT COUNT(*) AS total FROM comments')->fetch();
+        
+        return (isset($result['total'])) ? (int) $result['total'] : 0;
     }
 }

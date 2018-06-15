@@ -16,6 +16,8 @@ foreach ($viewData['commentsList'] as $comment) {
 }
 ?>
 
+<?php require(__DIR__.'/../_pagination.php'); ?>
+
 <form action="index.php?controller=comment&amp;action=create" method="post">
     <input type="hidden" name="postId" value="<?php echo $viewData['post']->getId(); ?>">
     <p>
