@@ -23,7 +23,7 @@ class PostManager extends Manager
      */
     public function getPostsList($offset=0, $limit=10)
     {
-        $request = $this->getDatabaseHandler()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT :offset, :limit');
+        $request = $this->getDatabaseHandler()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT :offset, :limit');
         $request->bindValue(':offset', $offset, \PDO::PARAM_INT);
         $request->bindValue(':limit', $limit, \PDO::PARAM_INT);
         $request->execute();
@@ -49,7 +49,7 @@ class PostManager extends Manager
             throw new \Exception('Invalid post id');
         }
         
-        $request = $this->getDatabaseHandler()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+        $request = $this->getDatabaseHandler()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?');
         $request->execute(array($id));
         $result = $request->fetch();
         $request->closeCursor();

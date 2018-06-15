@@ -46,7 +46,7 @@ class UserManager extends Manager
             throw new \Exception('Empty username');
         }
         
-        $request = $this->getDatabaseHandler()->prepare('SELECT u.id, u.username, u.password, u.email, DATE_FORMAT(u.creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, u.user_group_id, ug.name AS user_group_name FROM users AS u LEFT JOIN user_groups AS ug ON u.user_group_id = ug.id WHERE username = ?');
+        $request = $this->getDatabaseHandler()->prepare('SELECT u.id, u.username, u.password, u.email, DATE_FORMAT(u.creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr, u.user_group_id, ug.name AS user_group_name FROM users AS u LEFT JOIN user_groups AS ug ON u.user_group_id = ug.id WHERE username = ?');
         $request->execute(array($username));
         $result = $request->fetch();
         $request->closeCursor();

@@ -1,5 +1,4 @@
 <?php ob_start(); ?>
-<h1>Mon super blog !</h1>
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
 <?php require(__DIR__.'/../_alert.php'); ?>
@@ -8,7 +7,7 @@
 require('_postView.php');
 ?>
 
-<h2>Commentaires</h2>
+<h3>Commentaires</h3>
 
 <?php
 foreach ($viewData['commentsList'] as $comment) {

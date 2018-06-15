@@ -16,7 +16,7 @@ class CommentManager extends Manager
 
     public function getCommentsList($postId, $offset=0, $limit=10)
     {
-        $request = $this->getDatabaseHandler()->prepare('SELECT id, post_id, author, content, report_counter, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE post_id = :postId ORDER BY creation_date LIMIT :offset, :limit');
+        $request = $this->getDatabaseHandler()->prepare('SELECT id, post_id, author, content, report_counter, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM comments WHERE post_id = :postId ORDER BY creation_date LIMIT :offset, :limit');
         $request->bindValue(':postId', $postId, \PDO::PARAM_INT);
         $request->bindValue(':offset', $offset, \PDO::PARAM_INT);
         $request->bindValue(':limit', $limit, \PDO::PARAM_INT);
@@ -68,7 +68,7 @@ class CommentManager extends Manager
      */
     public function getCommentsListToModerate($offset=0, $limit=10)
     {
-        $request = $this->getDatabaseHandler()->prepare('SELECT id, post_id, author, content, report_counter, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments ORDER BY report_counter DESC LIMIT :offset, :limit');
+        $request = $this->getDatabaseHandler()->prepare('SELECT id, post_id, author, content, report_counter, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM comments ORDER BY report_counter DESC LIMIT :offset, :limit');
         $request->bindValue(':offset', $offset, \PDO::PARAM_INT);
         $request->bindValue(':limit', $limit, \PDO::PARAM_INT);
         $request->execute();

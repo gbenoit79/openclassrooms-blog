@@ -1,6 +1,4 @@
 <?php ob_start(); ?>
-<h1>Admin</h1>
-
 <?php require(__DIR__.'/../_alert.php'); ?>
 
 <?php require('_menu.php'); ?>
@@ -31,4 +29,4 @@
 <?php require(__DIR__.'/../_pagination.php'); ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require(__DIR__.'/../template.php'); ?>
+<?php require('template.php'); ?>

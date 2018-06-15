@@ -1,8 +1,6 @@
-<div class="post">
-    <h3>
-        <?php echo htmlspecialchars($viewData['post']->getTitle()); ?>
-        <em>le <?php echo $viewData['post']->getCreationDate(); ?></em>
-    </h3>
+<article class="blog-post">
+    <h2 class="blog-post-title"><?php echo htmlspecialchars($viewData['post']->getTitle()); ?></h2>
+    <p class="blog-post-meta"><?php echo $viewData['post']->getCreationDate(); ?></em></p>
     
     <p>
         <?php
@@ -14,4 +12,4 @@
             <em><a href="index.php?controller=post&amp;action=show&amp;postId=<?php echo $viewData['post']->getId(); ?>">Commentaires</a></em>
         <?php endif; ?>
     </p>
-</div>
+</article>

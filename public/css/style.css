@@ -1,27 +1,37 @@
-h1, h3
-{
-    text-align:center;
-}
-h3
-{
-    background-color:black;
-    color:white;
-    font-size:0.9em;
-    margin-bottom:0px;
-}
-.post p
-{
-    background-color:#CCCCCC;
-    margin-top:0px;
-}
-.post
-{
-    width:70%;
-    margin:auto;
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
-a
-{
+header {
+    border-bottom: 1px solid #eee;
+    margin: 20px;
+}
+
+footer {
+    padding: 20px 0;
+    color: #999;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5e5e5;
+}
+
+a, a:visited, a:hover, a:focus, a:active {
+    color: #0275d8;
     text-decoration: none;
-    color: blue;
+}
+
+.blog-post {
+    margin-bottom: 20px;
+}
+.blog-post-meta {
+    color: #999;
+}
+
+.sidebar-module {
+    margin-bottom: 20px;
+}
+.sidebar-module-inset {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
 }
