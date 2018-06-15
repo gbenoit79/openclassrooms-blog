@@ -14,8 +14,14 @@ class PostBackController extends PostFrontController
         // Init view data
         $viewData = $this->initViewData();
 
+        // Handle pagination
+        $totalItems = $this->getContainer()->getPostManager()->getTotalPosts();
+        $pagination = $this->handlePagination($totalItems);
+        $pagination['url'] = 'admin.php?controller=post&action=list';
+        $viewData['pagination'] = $pagination;
+
         // Get posts
-        $viewData['postsList'] = $this->getContainer()->getPostManager()->getPostsList(10);
+        $viewData['postsList'] = $this->getContainer()->getPostManager()->getPostsList($pagination['start'], $pagination['itemsPerPage']);
 
         // Handle alerts
         foreach (['Success', 'Danger'] as $alertType) {
