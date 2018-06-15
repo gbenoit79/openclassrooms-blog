@@ -34,6 +34,10 @@
                             <li><a href="https://www.fnac.com">Fnac</a></li>
                         </ol>
                     </div>
+                    <div class="sidebar-module">
+                        <h4>Connexion</h4>
+                        <a href="admin.php">Se connecter</a>
+                    </div>
                 </div>
             </div>
         </section>
