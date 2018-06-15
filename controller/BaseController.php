@@ -27,4 +27,32 @@ abstract class BaseController
         return $viewData;
     }
 
+    /**
+     * Handle pagination
+     * 
+     * @param int $totalItems
+     * @return array
+     */
+    public function handlePagination($totalItems)
+    {
+        if ($totalItems < 0) {
+            throw new \Exception('Invalid total items');
+        }
+        
+        $pagination = [];
+        if (isset($_GET['page']) && !empty($_GET['page'])){
+            $pagination['currentPage'] = $_GET['page'];
+        } else {
+            $pagination['currentPage'] = 1;
+        }
+        $pagination['itemsPerPage'] = $this->getContainer()->getConfig()['itemsPerPage'];
+        $pagination['start'] = ($pagination['currentPage'] * $pagination['itemsPerPage']) - $pagination['itemsPerPage'];
+        $pagination['totalItems'] = $totalItems;
+        $pagination['endPage'] = ceil($pagination['totalItems'] / $pagination['itemsPerPage']);
+        $pagination['startPage'] = 1;
+        $pagination['nextPage'] = $pagination['currentPage'] + 1;
+        $pagination['previousPage'] = $pagination['currentPage'] - 1;
+        
+        return $pagination;
+    }
 }

@@ -14,8 +14,13 @@ class PostFrontController extends BaseController
         $viewData = $this->initViewData();
         $viewData['displayCommentsLink'] = true;
 
-        // Get last 5 posts
-        $viewData['postsList'] = $this->getContainer()->getPostManager()->getPostsList(5);
+        // Handle pagination
+        $totalItems = $this->getContainer()->getPostManager()->getTotalPosts();
+        $pagination = $this->handlePagination($totalItems);
+        $viewData['pagination'] = $pagination;
+        
+        // Get posts
+        $viewData['postsList'] = $this->getContainer()->getPostManager()->getPostsList($pagination['start'], $pagination['itemsPerPage']);
 
         // Display view
         require_once('view/front/postListView.php');

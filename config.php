@@ -5,5 +5,6 @@ $config = [
         'username' => 'root',
         'passwd' => 'root',
     ],
+    'itemsPerPage' => 5,
     'title' => 'Blog de Jean Forteroche',
 ];

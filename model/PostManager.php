@@ -14,9 +14,19 @@ class PostManager extends Manager
         $this->setDatabaseHandler($databaseHandler);
     }
 
-    public function getPostsList($total=5)
+    /**
+     * Get posts list
+     * 
+     * @param int $offset
+     * @param int $limit
+     * @return array
+     */
+    public function getPostsList($offset=0, $limit=10)
     {
-        $request = $this->getDatabaseHandler()->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, '.$total);
+        $request = $this->getDatabaseHandler()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT :offset, :limit');
+        $request->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        $request->bindValue(':limit', $limit, \PDO::PARAM_INT);
+        $request->execute();
         $resultsList = $request->fetchAll();
         $request->closeCursor();
 
@@ -89,5 +99,17 @@ class PostManager extends Manager
         }
         
         return $result;
+    }
+
+    /**
+     * Get total posts
+     * 
+     * @return int
+     */
+    public function getTotalPosts()
+    {
+        $result = $this->getDatabaseHandler()->query('SELECT COUNT(*) AS total FROM posts')->fetch();
+        
+        return (isset($result['total'])) ? (int) $result['total'] : 0;
     }
 }
