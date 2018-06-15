@@ -27,6 +27,8 @@
     </tr>
 <?php endforeach; ?>
 </table>
+
+<?php require(__DIR__.'/../_pagination.php'); ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require(__DIR__.'/../template.php'); ?>

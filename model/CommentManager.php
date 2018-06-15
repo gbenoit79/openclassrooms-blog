@@ -107,11 +107,16 @@ class CommentManager extends Manager
     /**
      * Get total comments
      * 
+     * @param int $postId
      * @return int
      */
-    public function getTotalComments()
+    public function getTotalComments($postId=0)
     {
-        $result = $this->getDatabaseHandler()->query('SELECT COUNT(*) AS total FROM comments')->fetch();
+        $sql = 'SELECT COUNT(*) AS total FROM comments';
+        if ($postId > 0) {
+            $sql .= ' WHERE post_id = '.(int)$postId;
+        }
+        $result = $this->getDatabaseHandler()->query($sql)->fetch();
         
         return (isset($result['total'])) ? (int) $result['total'] : 0;
     }

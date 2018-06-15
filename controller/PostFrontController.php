@@ -42,7 +42,7 @@ class PostFrontController extends BaseController
         $viewData['post'] = $this->getContainer()->getPostManager()->getPost($postId);
 
         // Handle pagination
-        $totalItems = $this->getContainer()->getCommentManager()->getTotalComments();
+        $totalItems = $this->getContainer()->getCommentManager()->getTotalComments($postId);
         $pagination = $this->handlePagination($totalItems);
         $pagination['url'] = 'index.php?controller=post&action=show&postId='.$postId;
         $viewData['pagination'] = $pagination;

@@ -13,7 +13,13 @@ class CommentBackController extends BaseController
         // Init view data
         $viewData = $this->initViewData();
 
-        $viewData['commentsList'] = $this->getContainer()->getCommentManager()->getCommentsListToModerate();
+        // Handle pagination
+        $totalItems = $this->getContainer()->getCommentManager()->getTotalComments();
+        $pagination = $this->handlePagination($totalItems);
+        $pagination['url'] = 'admin.php?controller=comment&action=list';
+        $viewData['pagination'] = $pagination;
+
+        $viewData['commentsList'] = $this->getContainer()->getCommentManager()->getCommentsListToModerate($pagination['start'], $pagination['itemsPerPage']);
 
         // Handle alerts
         foreach (['Success', 'Danger'] as $alertType) {
