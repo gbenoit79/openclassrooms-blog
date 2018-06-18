@@ -29,7 +29,7 @@ class Container
             $instance = new \PDO(
                 $this->config['database']['dsn'],
                 $this->config['database']['username'], 
-                $this->config['database']['username']
+                $this->config['database']['passwd']
             );
         }
 
