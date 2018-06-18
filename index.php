@@ -7,6 +7,7 @@
 require_once('config.php');
 
 // Execute action
+session_start();
 require_once('model/Router.php');
 $router = new \OpenClassrooms\Blog\Model\Router($config);
 try {
