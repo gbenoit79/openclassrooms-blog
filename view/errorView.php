@@ -1,3 +1,4 @@
+<?php $viewData['title'] = 'Problème technique'; ?>
 <?php ob_start(); ?>
 <p>
     Une erreur est survenue : "<?php echo $viewData['error']; ?>".<br />

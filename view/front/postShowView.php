@@ -17,13 +17,17 @@ foreach ($viewData['commentsList'] as $comment) {
 
 <?php require(__DIR__.'/../_pagination.php'); ?>
 
-<form action="index.php?controller=comment&amp;action=create" method="post">
+<form id="comment-form" action="index.php?controller=comment&amp;action=create" method="post">
     <input type="hidden" name="postId" value="<?php echo $viewData['post']->getId(); ?>">
-    <p>
-        <label for="author">Pseudo</label> : <input type="text" name="author" id="author" required /><br />
-        <label for="content">Commentaire</label> :  <input type="text" name="content" id="content" required /><br />
-
-        <input type="submit" value="Envoyer" />
+    <div class="form-group">
+        <label for="author">Pseudo</label>
+        <input type="text" class="form-control" name="author" id="author" required />
+    </div>
+    <div class="form-group">
+        <label for="content">Commentaire</label>
+        <input type="text" class="form-control" name="content" id="content" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
     </p>
 </form>
 <?php $content = ob_get_clean(); ?>

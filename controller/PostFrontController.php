@@ -40,6 +40,9 @@ class PostFrontController extends BaseController
 
         // Get post
         $viewData['post'] = $this->getContainer()->getPostManager()->getPost($postId);
+        if (empty($viewData['post'])) {
+            throw new \Exception('Empty post');
+        }
 
         // Handle pagination
         $totalItems = $this->getContainer()->getCommentManager()->getTotalComments($postId);

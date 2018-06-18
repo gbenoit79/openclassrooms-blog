@@ -29,8 +29,10 @@ class CommentFrontController extends BaseController
             $result = $this->getContainer()->getCommentManager()->createComment($comment);
 
             // Is comment created successfully?
-            if (!$result) {
-                $_SESSION['alertDanger'] = 'Problème lors de la création du billet';
+            if ($result) {
+                $_SESSION['alertSuccess'] = 'Commentaire créé avec succès';
+            } else {
+                $_SESSION['alertDanger'] = 'Problème lors de la création du commentaire';
             }
         }
         
